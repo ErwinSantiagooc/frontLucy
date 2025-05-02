@@ -11,7 +11,7 @@ const FooterCliente = () => {
         <footer className="bg-slate-900 text-white w-full dark:border-t">
             <div className="container mx-auto px-4 py-8">
                 <div className="text-center mb-4">
-                    <img src="/logo.jpg"  alt="Logo" className="w-16 h-16 mx-auto" />
+                    <img src="/logo.png"  alt="Logo" className="w-16 h-16 mx-auto" />
                     <strong>Lucy Mundo de Pijamas</strong>
                     {/* <p className="leading-relaxed mt-2 text-[15px]">
                         Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.

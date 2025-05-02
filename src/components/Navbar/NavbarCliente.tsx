@@ -42,7 +42,7 @@ const NavbarCliente = () => {
           <div className="flex items-center justify-between py-3 md:py-5 md:block">
             <div className="flex items-center gap-2">
               <img
-                src="/logo.jpg"
+                src="/logo.png"
                 className="rounded-full"
                 width={30}
                 height={50}

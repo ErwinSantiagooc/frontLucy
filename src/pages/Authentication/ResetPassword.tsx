@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import AuthLayout from './AuthLayout';
 import axios from 'axios';
 import Loader from '../../common/Loader';
-import { set } from 'animejs';
+
 
 const MAX_ATTEMPTS = 5;
 const MIN_PASSWORD_LENGTH = 4;

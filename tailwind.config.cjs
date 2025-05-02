@@ -18,16 +18,25 @@ module.exports = {
       colors: {
         current: 'currentColor',
         transparent: 'transparent',
-        white: '#FFFFFF',
+        white: '#FFFFFF', 'white-soft': '#FFFFFE',
         black: '#1C2434',
         'black-2': '#010101',
-        body: '#64748B',
+       // Neutrals
+        body: '#ae90bc',        // Reemplazo más suave
+        bodylight: '#AEB7C0',
+        dark: '#19222A',
         bodydark: '#AEB7C0',
         bodydark1: '#DEE4EE',
         bodydark2: '#8A99AF',
-        primary: '#3C50E0',
-        secondary: '#80CAEE',
-        stroke: '#E2E8F0',
+        primary: '#ED9FB9',     // Rosa pastel
+        secondary: '#AC84C0',   // Lila
+        accent: '#6BBFBF',      // Turquesa
+        beige: '#D6BD9F',       // Beige claro
+        brown: '#C5A17D',       // Marrón claro
+        // Backgrounds and borders
+        background: '#FFF',
+        light: '#F5F7FD',       // Alternativa clara
+        stroke: '#D7B899', 
         gray: '#EFF4FB',
         graydark: '#333A48',
         'gray-2': '#F7F9FC',
@@ -39,7 +48,7 @@ module.exports = {
         strokedark: '#2E3A47',
         'form-strokedark': '#3d4d60',
         'form-input': '#1d2a39',
-        'meta-1': '#DC3545',
+        'meta-1': '#ae90bc', 
         'meta-2': '#EFF2F7',
         'meta-3': '#10B981',
         'meta-4': '#313D4A',
@@ -48,9 +57,9 @@ module.exports = {
         'meta-7': '#FF6766',
         'meta-8': '#F0950C',
         'meta-9': '#E5E7EB',
-        success: '#219653',
-        danger: '#D34053',
+        success: '#10B981',
         warning: '#FFA70B',
+        danger: '#D34053',
       },
       fontSize: {
         'title-xxl': ['44px', '55px'],

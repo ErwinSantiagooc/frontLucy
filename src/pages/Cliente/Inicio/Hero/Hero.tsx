@@ -4,42 +4,42 @@ import { useAnimation, useInView, motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
 const Hero: React.FC = () => {
-    return (
-      <section className="flex items-center justify-center text-slate-100 overflow-hidden bg-slate-900  min-h-screen">
-        <div className="relative text-center">
-          <div className="pointer-events-none relative z-10 text-center">
-            <Reveal>
-              <h1 className="pointer-events-auto text-6xl font-black text-slate-100 md:text-8xl">
-                Lucy Mundo de Pijamas
-              </h1>
-            </Reveal>
-            <Reveal>
-              <h2 className="pointer-events-auto my-4 text-2xl md:my-6 md:text-4xl">
-                <span className="font-semibold">
-                  Tu tienda de pijamas para todas las edades
-                </span>
-              </h2>
-            </Reveal>
-            <Reveal>
-              <p className="pointer-events-auto mx-auto max-w-2xl text-base md:text-lg">
-                Contamos con una amplia variedad de productos de alta calidad y diseños exclusivos para todas las edades. ¡Explora nuestra colección y encuentra el pijama perfecto para ti!  
-              </p>
-            </Reveal>
-            <Reveal>
-              <Link to="/cliente/productos">
-              <button className="pointer-events-auto mt-6 rounded bg-blue-900 px-6 py-3 font-medium text-slate-100 transition-all hover:bg-indigo-700 active:scale-95 md:mt-8">
+  return (
+    <section className="flex items-center justify-center text-slate-100 overflow-hidden bg-slate-900  min-h-screen">
+      <div className="relative text-center">
+        <div className="pointer-events-none relative z-10 text-center">
+          <Reveal>
+            <h1 className="pointer-events-auto text-6xl font-black text-slate-100 md:text-8xl">
+              Lucy Mundo de Pijamas
+            </h1>
+          </Reveal>
+          <Reveal>
+            <h2 className="pointer-events-auto my-4 text-2xl md:my-6 md:text-4xl">
+              <span className="font-semibold">
+                Tu tienda de pijamas para todas las edades
+              </span>
+            </h2>
+          </Reveal>
+          <Reveal>
+            <p className="pointer-events-auto mx-auto max-w-2xl text-base md:text-lg">
+              Contamos con una amplia variedad de productos de alta calidad y diseños exclusivos para todas las edades. ¡Explora nuestra colección y encuentra el pijama perfecto para ti!
+            </p>
+          </Reveal>
+          <Reveal>
+            <Link to="/cliente/productos">
+              <button className="pointer-events-auto mt-6 rounded bg-primary px-6 py-3 font-medium text-base transition-all hover:bg-secondary active:scale-95 md:mt-8">
                 Explorar Productos
               </button>
-              </Link>
-              
-            </Reveal>
-          </div>
+            </Link>
+
+          </Reveal>
         </div>
-      </section>
-    );
-  };
-  
-  
+      </div>
+    </section>
+  );
+};
+
+
 
 
 

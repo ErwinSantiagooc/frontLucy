@@ -3,7 +3,13 @@ import dataJSON from '../../public/data.json';
 
 
 
-export const Modal = ({ closeModal, onSubmit, defaultValue }) => {
+interface ModalProps {
+  closeModal: () => void;
+  onSubmit: (formState: { id: string; para: string; criterion: string; value: string; type: string }) => void;
+  defaultValue?: { id: string; para: string; criterion: string; value: string; type: string };
+}
+
+export const Modal: React.FC<ModalProps> = ({ closeModal, onSubmit, defaultValue }) => {
   const fields=Object.keys(Object.values(dataJSON)[0]).filter((item:any)=>!(item.startsWith("delta_")));
   
   const [formState, setFormState] = useState(
@@ -44,20 +50,23 @@ export const Modal = ({ closeModal, onSubmit, defaultValue }) => {
     }
   };
 
-  const handleChange = (e) => {
-    console.log(formState.criterion);
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const criterionValue = Number(formState.criterion);
+    console.log(criterionValue);
     console.log(e.target.name);
-    console.log(e.target.name=="para"&&e.target.value=='rating');
-    console.log(formState.criterion>1&&formState.criterion<4);
+    console.log(e.target.name === "para" && e.target.value === 'rating');
+    console.log(criterionValue > 1 && criterionValue < 4);
     console.log(e.target.value);
-    console.log(e.target.name=="para"&&e.target.value=='rating'&&formState.criterion>1&&formState.criterion<4);
-    if (e.target.name=="para"&&e.target.value=='rating'&&formState.criterion>1&&formState.criterion<4) {setFormState({ ...formState, ["criterion"]: 0 });}
+    console.log(e.target.name === "para" && e.target.value === 'rating' && criterionValue > 1 && criterionValue < 4);
+    if (e.target.name === "para" && e.target.value === 'rating' && criterionValue > 1 && criterionValue < 4) {
+      setFormState({ ...formState, ["criterion"]: "0" });
+    }
     
     console.log(formState.criterion);
     setFormState({ ...formState, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (!validateForm()) return;
@@ -71,7 +80,7 @@ export const Modal = ({ closeModal, onSubmit, defaultValue }) => {
     <div
       className="modal-container fixed z-50 flex top-25 bottom-5 "
       onClick={(e) => {
-        if (e.target.className === "modal-container") closeModal();
+        if ((e.target as HTMLElement).className === "modal-container") closeModal();
       }}
     >
     
@@ -82,7 +91,7 @@ export const Modal = ({ closeModal, onSubmit, defaultValue }) => {
       onClick={closeModal}
       >&times;</strong>
       </div>
-        <form>
+        <form onSubmit={handleSubmit}>
         <div className="grid grid-cols-3 gap-5 justify-normal">
           <div className="form-group w-full col-span-3">
             <label  className="mb-3 block text-sm font-medium text-black dark:text-white"
@@ -139,7 +148,7 @@ export const Modal = ({ closeModal, onSubmit, defaultValue }) => {
             <div className="relative z-20 w-full rounded border border-stroke p-1.5 pr-8 font-medium outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input">
                   <div className="flex flex-wrap items-center"></div>
                   <span className="m-1.5 flex items-center justify-center rounded border-[.5px] border-stroke bg-gray py-1.5 px-2.5 text-sm font-medium dark:border-strokedark dark:bg-white/30">
-                      {formState.criterion==0?"goes down by":formState.criterion==1?"goes up by":formState.criterion==2?"is smaller than":formState.criterion==3?"is greater than":"is equal to"}
+                      {Number(formState.criterion) === 0 ? "goes down by" : Number(formState.criterion) === 1 ? "goes up by" : Number(formState.criterion) === 2 ? "is smaller than" : Number(formState.criterion) === 3 ? "is greater than" : "is equal to"}
                     </span>
             <select
             className="absolute top-0 left-0 z-20 h-full w-full bg-transparent opacity-0"
@@ -184,8 +193,8 @@ export const Modal = ({ closeModal, onSubmit, defaultValue }) => {
             <label className="mb-3 block text-sm font-medium text-black dark:text-white" htmlFor="type">Alert Type</label>
             <div className="relative z-20 w-full rounded border border-stroke p-1.5 pr-8 font-medium outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input">
                   <div className="flex flex-wrap items-center"></div>
-                  <span className={`${formState.type==0?"bg-[#04b20c]":formState.type==1?"bg-[#eab90f]":"bg-[#e13f32]"} m-1.5 flex items-center justify-center rounded border-[.5px] border-stroke py-1.5 px-2.5 text-white font-medium dark:border-strokedark`}>
-                      {formState.type==0?"Info":formState.type==1?"Warning":"Alert"}
+                  <span className={`${Number(formState.type) === 0 ? "bg-[#04b20c]" : Number(formState.type) === 1 ? "bg-[#eab90f]" : "bg-[#e13f32]"} m-1.5 flex items-center justify-center rounded border-[.5px] border-stroke py-1.5 px-2.5 text-white font-medium dark:border-strokedark`}>
+                      {Number(formState.type) === 0 ? "Info" : Number(formState.type) === 1 ? "Warning" : "Alert"}
                       
                             
                     </span>
@@ -226,7 +235,7 @@ export const Modal = ({ closeModal, onSubmit, defaultValue }) => {
           
           <br></br>
           <button className="btn flex justify-center rounded bg-primary py-2 px-6 font-medium text-gray hover:shadow-1"
-                      type="submit" onClick={handleSubmit}>
+                      type="submit">
             Submit
           </button>
         </form>

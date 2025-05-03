@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
 import { useClienteContext } from "../../../Context/ClienteContext";
+import PageTitle from "../../../components/PageTitle"
 
 interface Pregunta {
   id: number;
@@ -21,46 +22,49 @@ const FaqsCard: React.FC<Pregunta> = ({ id, pregunta, respuesta }) => {
   };
 
   return (
-    <div
-      className="space-y-3 mt-5 overflow-hidden border-b"
-      onClick={handleOpenAnswer}
-    >
-      <h4 className="cursor-pointer pb-5 flex items-center justify-between text-lg text-gray-700 font-medium">
-        {pregunta}
-        {state ? (
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5 text-gray-500 ml-2"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4" />
-          </svg>
-        ) : (
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5 text-gray-500 ml-2"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M12 4v16m8-8H4"
-            />
-          </svg>
-        )}
-      </h4>
+    <div>
+      <PageTitle title="Lucy Mundo de Pijamas | Preguntas Frecuentes" />
       <div
-        ref={answerElRef}
-        className="duration-300"
-        style={state ? { height: answerH } : { height: "0px" }}
+        className="space-y-3 mt-5 overflow-hidden border-b"
+        onClick={handleOpenAnswer}
       >
-        <div>
-          <p className="text-gray-500">{respuesta}</p>
+        <h4 className="cursor-pointer pb-5 flex items-center justify-between text-lg text-gray-700 font-medium">
+          {pregunta}
+          {state ? (
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-5 w-5 text-gray-500 ml-2"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4" />
+            </svg>
+          ) : (
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-5 w-5 text-gray-500 ml-2"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M12 4v16m8-8H4"
+              />
+            </svg>
+          )}
+        </h4>
+        <div
+          ref={answerElRef}
+          className="duration-300"
+          style={state ? { height: answerH } : { height: "0px" }}
+        >
+          <div>
+            <p className="text-gray-500">{respuesta}</p>
+          </div>
         </div>
       </div>
     </div>

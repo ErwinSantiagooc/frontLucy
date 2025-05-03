@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import GenerarPQR from "./GenerarPQR";
-
+import PageTitle from "../../../components/PageTitle"
 interface Section {
   title: string;
   content: string;
@@ -76,25 +76,28 @@ const PQR: React.FC = () => {
   };
 
   return (
-    <section className="max-w-screen-lg mx-auto p-6">
-      <h1 className="text-3xl font-bold text-center mb-8">TEKCAM PQR </h1>
-      <GenerarPQR   />
-      {sections.map((section, index) => (
-        <div
-          key={index}
-          className="border-b py-4 cursor-pointer"
-          onClick={() => toggleSection(index)}
-        >
-          <h2 className="text-xl font-medium flex justify-between items-center">
-            {section.title}
-            <span>{openSection === index ? "-" : "+"}</span>
-          </h2>
-          {openSection === index && (
-            <p className="mt-4 text-gray-600">{section.content}</p>
-          )}
-        </div>
-      ))}
-    </section>
+    <>
+      <PageTitle title="Lucy Mundo de Pijamas PQR" />
+      <section className="max-w-screen-lg mx-auto p-6">
+        <h1 className="text-3xl font-bold text-center mb-8">Lucy Mundo de Pijamas PQR </h1>
+        <GenerarPQR />
+        {sections.map((section, index) => (
+          <div
+            key={index}
+            className="border-b py-4 cursor-pointer"
+            onClick={() => toggleSection(index)}
+          >
+            <h2 className="text-xl font-medium flex justify-between items-center">
+              {section.title}
+              <span>{openSection === index ? "-" : "+"}</span>
+            </h2>
+            {openSection === index && (
+              <p className="mt-4 text-gray-600">{section.content}</p>
+            )}
+          </div>
+        ))}
+      </section>
+    </>
   );
 };
 

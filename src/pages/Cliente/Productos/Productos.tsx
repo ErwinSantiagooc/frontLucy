@@ -5,6 +5,8 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import SidebarLinkGroup from '../../../components/Sidebar/SidebarLinkGroup';
 import ProductList from './CardProductos/CardProductos';
 import SelectGroupOne from '../../../components/Forms/SelectGroup/SelectGroupOne';
+import PageTitle from '../../../components/PageTitle';
+
 
 function formatCurrency(value: number | 0) {
   if (typeof value !== 'number') {
@@ -104,7 +106,9 @@ const Productos: React.FC = () => {
     }, []);
 
   return (
-    <div className="container mx-auto ">
+    <>
+      <PageTitle title="Lucy Mundo de Pijamas | Productos" />
+      <div className="container mx-auto ">
       <div className="flex flex-col md:flex-row">
         {/* Filtros (25% del ancho) */}
         <div className="w-full md:w-1/4 mr-3 ">
@@ -301,7 +305,8 @@ const Productos: React.FC = () => {
           />
         </div>
       </div>
-    </div>
+      </div>
+    </>
   );
 };
 

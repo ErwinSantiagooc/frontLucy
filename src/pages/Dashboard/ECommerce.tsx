@@ -141,18 +141,6 @@ const ECommerce = () => {
           >
             Registrar SubCategoría
           </button>
-          <button
-            onClick={() => handleOpenModal('marca')}
-            className="rounded bg-primary p-3 text-white"
-          >
-            Registrar Marca
-          </button>
-          <button
-            onClick={() => handleOpenModal('catalogo')}
-            className="rounded bg-primary p-3 text-white"
-          >
-            Registrar Catalogo
-          </button>
         </div>
       </div>
       )}
@@ -170,7 +158,7 @@ const ECommerce = () => {
               <Dialog.Title className="text-lg font-medium text-gray-800 text-center mb-4 uppercase">
                 {entityType === 'categoria' && 'Registrar Categoría'}
                 {entityType === 'subCategoria' && 'Registrar SubCategoría'}
-                {entityType === 'marca' && 'Registrar Marca'}
+
               </Dialog.Title>
               {errorMsg && (
                 <div className="mb-4 p-2 bg-red-100 text-red-700 rounded-md">

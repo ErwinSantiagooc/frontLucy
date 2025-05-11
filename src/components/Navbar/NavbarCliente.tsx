@@ -37,8 +37,9 @@ const NavbarCliente = () => {
   }, [drawerOpen]);
   return (
     <>
-      <nav className="bg-white w-full border-b md:border-0   md:static  dark:bg-slate-900 dark:border-t dark:border-b">
+      <nav className="bg-white w-full border-b border-blue-100 shadow-sm md:border-0 md:static dark:bg-blue-950">
         <div className="items-center px-4 max-w-screen-xl mx-auto md:flex md:px-8">
+          {/* Logo y menú móvil */}
           <div className="flex items-center justify-between py-3 md:py-5 md:block">
             <div className="flex items-center gap-2">
               <img
@@ -46,16 +47,18 @@ const NavbarCliente = () => {
                 className="rounded-full"
                 width={30}
                 height={50}
-                alt="Lucy Pijamas Logo"
+                alt="KINGO Pijamas Logo"
               />
-              <strong className="font-bold text-blue-900 text-2xl">
-                Lucy Mundo de Pijamas
+              <strong className="font-bold text-blue-900 text-2xl dark:text-blue-100">
+               Lucy Mundo de Pijamas
               </strong>
             </div>
+
             <div className="md:hidden">
               <button
-                className="text-gray-700 outline-none p-2 rounded-md focus:border-gray-400 focus:border"
+                className="text-blue-900 outline-none p-2 rounded-md focus:border-blue-400 focus:border dark:text-blue-100"
                 onClick={() => setState(!state)}
+                aria-label="Toggle menu"
               >
                 {state ? (
                   <svg
@@ -89,6 +92,8 @@ const NavbarCliente = () => {
               </button>
             </div>
           </div>
+
+
           <div
             className={`flex-1 justify-self-center pb-3 mt-8 md:block md:pb-0 md:mt-0 ${
               state ? 'block' : 'hidden'
@@ -108,17 +113,19 @@ const NavbarCliente = () => {
             </ul>
           </div>
           <div className="inline-block flex justify-center">
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-4">
+              {/* Botón carrito */}
               <button
-                className="bg-slate-900 text-white rounded-md shadow py-3 px-4 hover:bg-blue-700 relative"
+                className="bg-blue-900 text-white rounded-md shadow py-3 px-4 hover:bg-blue-800 relative transition-colors dark:bg-blue-700 dark:hover:bg-blue-600"
                 title="Carrito"
                 onClick={() => setDrawerOpen(true)}
+                aria-label="Abrir carrito"
               >
                 <FaShoppingBag />
                 {carrito && carrito.length > 0 && (
-                <span className="absolute top-0 right-0 inline-flex items-center justify-center w-5 h-5 text-xs font-semibold text-gray-800 bg-red-700 rounded-full transform translate-x-1/2 -translate-y-1/2">
-                  {carrito?.length}
-                </span>
+                  <span className="absolute top-0 right-0 inline-flex items-center justify-center w-5 h-5 text-xs font-semibold text-white bg-coral-500 rounded-full transform translate-x-1/2 -translate-y-1/2">
+                    {carrito?.length}
+                  </span>
                 )}
               </button>
 

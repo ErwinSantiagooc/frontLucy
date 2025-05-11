@@ -11,26 +11,30 @@ const Stock: React.FC = () => {
       <Breadcrumb pageName="Stock" lastPage='' />
       <div className="grid grid-cols-1 gap-9">
         <div className="flex flex-col gap-9">
-          {/* <!-- Input Fields --> */}
-          <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
-            <div className="border-b border-stroke py-4 px-6.5 dark:border-strokedark flex items-center justify-between">
-              <h3 className="font-medium text-black dark:text-white">
+          {/* Contenedor principal */}
+          <div className="rounded-lg border border-blue-100 bg-white shadow-sm dark:border-blue-900 dark:bg-blue-950">
+            {/* Header */}
+            <div className="border-b border-blue-100 py-4 px-6.5 dark:border-blue-800 flex items-center justify-between">
+              <h3 className="font-medium text-blue-900 dark:text-blue-50 text-lg">
                 Lista de productos
               </h3>
-              {modulo==='admin' && (
-              <div className="ml-auto">
-                <Link
-                title='Registrar Producto'
-                  to={`/${modulo}/stock/registrar`}
-                  className=" flex items-center justify-between gap-2 bg-primary text-white rounded-lg px-4 py-2 font-medium transition hover:bg-opacity-90"
-                >
-                  <BsFillBagPlusFill /> Producto
-                </Link>
-              </div>
+              {modulo === 'admin' && (
+                <div className="ml-auto">
+                  <Link
+                    title='Registrar Producto'
+                    to={`/${modulo}/stock/registrar`}
+                    className="flex items-center justify-between gap-2 bg-blue-900 text-white rounded-lg px-4 py-2 font-medium transition hover:bg-blue-800 hover:shadow-md"
+                  >
+                    <BsFillBagPlusFill className="text-coral-300" />
+                    <span>Nuevo Producto</span>
+                  </Link>
+                </div>
               )}
             </div>
-            <div className="flex flex-col gap-9 mt-3">
-              <CardProducto  />
+
+            {/* Contenido */}
+            <div className="p-6">
+              <CardProducto />
             </div>
           </div>
         </div>

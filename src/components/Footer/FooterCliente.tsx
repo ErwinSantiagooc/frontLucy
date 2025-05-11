@@ -10,7 +10,7 @@ const FooterCliente = () => {
         <footer className="bg-[#B695E0] text-white w-full">
             <div className="container mx-auto px-4 py-8">
                 <div className="text-center mb-4">
-                    <img src="/logo.png" alt="Logo" className="w-16 h-16 mx-auto" />
+                    <img src="/logo.png" alt="Logo" className="w-16 h-16 rounded-full border-2 border-blue-100 mx-auto" />
                     <strong className="text-white text-lg block mt-2">Lucy Mundo de Pijamas</strong>
                 </div>
 

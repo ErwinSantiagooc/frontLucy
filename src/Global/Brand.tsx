@@ -1,13 +1,19 @@
 
-import Logo from '/logo.png';
 
-const Brand = ({dark = false}) => {
+
+const Brand = ({ dark = false }: { dark?: boolean }) => {
   return (
-    <div className={`flex items-center gap-2 rounded-sm py-2 px-4 text-lg font-extrabold  text-black  ${
-      dark ? 'text-white' : 'text-dark'
-    }`}>
-      <img src={Logo} alt="Logo" width={50} height={50} />
-      Lucy Mundo de Pijamas
+    <div className={`flex items-center gap-3 rounded-lg py-2 px-4 ${dark ? 'bg-blue-950' : 'bg-white'}`}>
+      <img 
+        src="/logo.png" 
+        alt="lucy-mundo-de-pijamas"
+        width={50} 
+        height={50}
+        className="rounded-full border-2 border-blue-100"
+      />
+      <span className={`text-xl font-bold tracking-wide ${dark ? 'text-blue-50' : 'text-blue-900'}`}>
+        Lucy Mundo de Pijamas
+      </span>
     </div>
   );
 };

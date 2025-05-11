@@ -27,31 +27,32 @@ const projects = [
 
 const Projects = () => {
   return (
-    <div>
-     
-      <div className="h-72 overflow-y-auto flex flex-col-reverse gap-6">
+    <div className="p-4">
+      <div className="h-72 overflow-y-auto flex flex-col-reverse gap-8">
         {projects.map((project, index) => (
           <div
             key={index}
-            className="  transition-shadow duration-300"
+            className="transition-all duration-300 hover:scale-[1.02] hover:shadow-lg"
           >
             <a
               href={project.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="block"
+              className="block group"
             >
-              <img
-                src={project.logo}
-                alt={`${project.name} Logo`}
-                className="w-36 h-36 mx-auto "
-              />
-              <p className="text-lg font-bold text-gray-900 text-center hover:text-blue-900 transition-colors duration-300">
-                {project.name}
-              </p>
-              <p className="mt-2 text-gray-600 text-center">
-                {project.description}
-              </p>
+              <div className="bg-white p-6 rounded-lg border border-blue-100 hover:border-coral-300 transition-colors duration-300">
+                <img
+                  src={project.logo}
+                  alt={`${project.name} Logo`}
+                  className="w-36 h-36 mx-auto object-contain p-2 group-hover:opacity-90 transition-opacity"
+                />
+                <p className="text-lg font-bold text-blue-900 text-center group-hover:text-coral-500 transition-colors duration-300 mt-4">
+                  {project.name}
+                </p>
+                <p className="mt-2 text-blue-800 text-center text-sm">
+                  {project.description}
+                </p>
+              </div>
             </a>
           </div>
         ))}

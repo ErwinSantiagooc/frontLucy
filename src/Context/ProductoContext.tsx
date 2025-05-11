@@ -7,8 +7,6 @@ import React, {
 } from 'react';
 import axios from 'axios';
 import { Categoria } from '../types/Categoria';
-import { Marca } from '../types/Marca';
-import { Catalogo } from '../types/Catalogo';
 import { Producto } from '../types/producto';
 
 // Define el tipo para el contexto del producto
@@ -16,12 +14,6 @@ type ProductoContextType = {
   token: string | null;
   categorias: Categoria[] | null;
   setCategorias: React.Dispatch<React.SetStateAction<Categoria[] | null>>;
-  marcas: Marca[] | null;
-  setMarcas: React.Dispatch<React.SetStateAction<Marca[] | null>>;
-  fetchCategoriasYMarcas: () => void;
-  catalogos: Catalogo[] | null;
-  setCatalogos: React.Dispatch<React.SetStateAction<Catalogo[] | null>>;
-  fetchCatalogos: () => void;
   productos: Producto[] | null;
   setProductos: React.Dispatch<React.SetStateAction<Producto[] | null>>;
   fetchProductos: () => void;
@@ -48,13 +40,11 @@ export const ProductoProvider: React.FC<{ children: ReactNode }> = ({
 }) => {
   const token = localStorage.getItem('token');
   const [categorias, setCategorias] = useState<Categoria[] | null>([]);
-  const [marcas, setMarcas] = useState<Marca[] | null>([]);
-  const [catalogos, setCatalogos] = useState<Catalogo[] | null>([]);
   const [productos,setProductos] = useState<Producto[] | null>([]);
   const BASE_URL = import.meta.env.VITE_URL_BACKEND_LOCAL;
 
   // Función para obtener las categorías y marcas
-  const fetchCategoriasYMarcas = async () => {
+  const fetchCategorias = async () => {
     try {
       const headers = { Authorization: `Bearer ${token}` };
     
@@ -66,30 +56,12 @@ export const ProductoProvider: React.FC<{ children: ReactNode }> = ({
         },
       );
       setCategorias(categoriasResponse.data.data);
-
-      // Solicitud para obtener las marcas
-      const marcasResponse = await axios.get(`${BASE_URL}detalles/marca/all`, {
-        headers,
-      });
-      setMarcas(marcasResponse.data.data);
     } catch (error) {
       console.error('Error fetching data:', error);
     }
   };
 
-  const fetchCatalogos = async () => {
-    try {
-      const headers = { Authorization: `Bearer ${token}` };
-     
-      // Solicitud para obtener los catalogos
-      const catalogosResponse = await axios.get(`${BASE_URL}catalogo/all`, {
-        headers,
-      });
-      setCatalogos(catalogosResponse.data.data);
-    } catch (error) {
-      console.error('Error fetching data:', error);
-    }
-  };
+
   const fetchProductos= async()=>{
     try {
       const headers= {
@@ -108,8 +80,7 @@ export const ProductoProvider: React.FC<{ children: ReactNode }> = ({
 
   useEffect(() => {
     if (token) {
-      fetchCategoriasYMarcas();
-      fetchCatalogos()
+      fetchCategorias();
       fetchProductos();
     }
   }, [token]);
@@ -120,12 +91,6 @@ export const ProductoProvider: React.FC<{ children: ReactNode }> = ({
         token,
         categorias,
         setCategorias,
-        marcas,
-        setMarcas,
-        fetchCategoriasYMarcas,
-        catalogos,
-        setCatalogos,
-        fetchCatalogos,
         productos,
         setProductos,
         fetchProductos

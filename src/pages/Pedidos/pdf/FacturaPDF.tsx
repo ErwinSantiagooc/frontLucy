@@ -35,7 +35,7 @@ const FacturaPDF: React.FC<{ factura: Factura }> = ({ factura }) => {
     const doc = new jsPDF();
 
     // Cargar logo de la empresa
-    const logoUrl = 'https://tekcam-frontend.vercel.app/tekcam.png';
+    const logoUrl = '';
     const logo = await fetch(logoUrl)
       .then((res) => res.blob())
       .then((blob) => {
@@ -49,7 +49,7 @@ const FacturaPDF: React.FC<{ factura: Factura }> = ({ factura }) => {
     // Agregar encabezado
     doc.addImage(logo, 'PNG', 10, 10, 30, 30); // Logo (x, y, width, height)
     doc.setFontSize(18);
-    doc.text('TEKCAM', 50, 20);
+    doc.text('Lucy Mundo de Pijamas', 50, 20);
     doc.setFontSize(12);
     doc.text('Factura Digital', 50, 35);
     doc.text(`${new Date().toLocaleDateString()}`, 50, 40);

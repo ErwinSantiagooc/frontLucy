@@ -29,7 +29,7 @@ const routes: RouteObject[] = [
     path: '/admin/',
     element: (
       <>
-        <PageTitle title="TEKCAM eCommerce Dashboard " />
+        <PageTitle title="Lucy Mundo de Pijamas eCommerce Dashboard " />
         <ECommerce />
       </>
     ),
@@ -214,7 +214,7 @@ const routes: RouteObject[] = [
     path: '/cliente/',
     element: (
       <>
-        <PageTitle title="TEKCAM eCommerce " />
+        <PageTitle title="Lucy Mundo de Pijamas" />
         <Inicio />
       </>
     ),
@@ -223,7 +223,7 @@ const routes: RouteObject[] = [
     path: '/cliente/login',
     element: (
       <>
-        <PageTitle title="TEKCAM Login " />
+        <PageTitle title="Lucy Mundo de Pijamas Login " />
         <Login />
       </>
     ),
@@ -232,7 +232,7 @@ const routes: RouteObject[] = [
     path: '/cliente/reset-password',
     element: (
       <>
-        <PageTitle title="TEKCAM Login " />
+        <PageTitle title="Lucy Mundo de Pijamas Login " />
         <ResetPassword />
       </>
     ),
@@ -241,7 +241,7 @@ const routes: RouteObject[] = [
     path: '/cliente/productos',
     element: (
       <>
-        <PageTitle title="TEKCAM Login " />
+        <PageTitle title="Lucy Mundo de Pijamas Login " />
         <Productos />
       </>
     ),
@@ -250,7 +250,7 @@ const routes: RouteObject[] = [
     path: '/cliente/producto/:id/informacion',
     element: (
       <>
-        <PageTitle title="TEKCAM Login " />
+        <PageTitle title="Lucy Mundo de Pijamas Login " />
         <InfoProductoCliente />
       </>
     ),
@@ -259,7 +259,7 @@ const routes: RouteObject[] = [
     path: '/cliente/pago',
     element: (
       <>
-        <PageTitle title="TEKCAM Pago pedido " />
+        <PageTitle title="Lucy Mundo de Pijamas Pago pedido " />
         <Checkout />
       </>
     ),
@@ -268,7 +268,7 @@ const routes: RouteObject[] = [
     path: '/cliente/pedido/:ref',
     element: (
       <>
-        <PageTitle title="TEKCAM Pedido  " />
+        <PageTitle title="Lucy Mundo de Pijamas Pedido" />
         <PedidoCliente />
       </>
     ),
@@ -277,7 +277,7 @@ const routes: RouteObject[] = [
     path: '/cliente/preguntas-frecuentes',
     element: (
       <>
-        <PageTitle title="TEKCAM Preguntas Frecuentes " />
+        <PageTitle title="Lucy Mundo de Pijamas Preguntas Frecuentes " />
         <PreguntasFrecuentres />
       </>
     ),
@@ -286,7 +286,7 @@ const routes: RouteObject[] = [
     path: '/cliente/pqr',
     element: (
       <>
-        <PageTitle title="TEKCAM PQR " />
+        <PageTitle title="Lucy Mundo de Pijamas PQR " />
         <PQR />
       </>
     ),

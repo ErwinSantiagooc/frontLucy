@@ -5,22 +5,16 @@ import { Categoria } from '../../types/Categoria';
 import * as Dialog from '@radix-ui/react-dialog';
 import { FaEdit } from 'react-icons/fa';
 import { SubCategoria } from '../../types/SubCategoria';
-import { Marca } from '../../types/Marca';
-import { Catalogo } from '../../types/Catalogo';
 import Loader from '../../common/Loader';
 import { useUserContext } from '../../Context/UserContext';
 
-const BASE_URL = import.meta.env.VITE_URL_BACKEND_LOCAL;
+const BASE_URL = "http://13.56.234.70:8080/api/productos";
 
 
 const CategoriasList = () => {
   const token = localStorage.getItem('token');
   const {
-    categorias,
-    marcas,
-    fetchCategoriasYMarcas,
-    catalogos,
-    fetchCatalogos,
+    categorias
   } = useProductoContext();
   const [selectedCategoria, setSelectedCategoria] = useState<Categoria | null>(
     null,
@@ -45,7 +39,7 @@ const CategoriasList = () => {
 
   const handleEditClick = (
     type: string,
-    entity: Categoria | SubCategoria | Marca | Catalogo,
+    entity: Categoria | SubCategoria,
   ) => {
     setEntityType(type);
     setNombre(entity.nombre);
@@ -78,7 +72,7 @@ const CategoriasList = () => {
       );
 
       if (response.data.success) {
-        fetchCategoriasYMarcas(); // Volver a cargar las categorías y marcas
+ // Volver a cargar las categorías y marcas
         setModalOpen(false);
       } else {
         setErrorMsg(response.data.msg);
@@ -107,7 +101,7 @@ const CategoriasList = () => {
       );
 
       if (response.data.success) {
-        fetchCategoriasYMarcas(); // Volver a cargar las categorías y marcas
+       // Volver a cargar las categorías y marcas
         setModalOpen(false);
       } else {
         setErrorMsg(response.data.msg);
@@ -122,32 +116,7 @@ const CategoriasList = () => {
     }
   };
 
-  const actualizarMarca = async () => {
-    try {
-      const headers = {
-        Authorization: `Bearer ${token}`,
-        'Content-Type': 'application/json',
-      };
-      setLoading(true);
-      const response: AxiosResponse<any> = await axios.put(
-        `${BASE_URL}detalles/marca/update`,
-        { id: categoriaId, nombre },
-        { headers },
-      );
-
-      if (response.data.success) {
-        fetchCategoriasYMarcas(); // Volver a cargar las categorías y marcas
-        setModalOpen(false);
-      } else {
-        setErrorMsg(response.data.msg);
-      }
-    } catch (error) {
-      console.error('Error al actualizar la marca:', error);
-      setErrorMsg('Hubo un error al actualizar la marca. Inténtalo de nuevo.');
-    } finally {
-      setLoading(false);
-    }
-  };
+  
   const actualizarCatalogo = async () => {
     try {
       const headers = {
@@ -161,7 +130,7 @@ const CategoriasList = () => {
         { headers },
       );
       if (response.data.success) {
-        fetchCatalogos(); // Volver a cargar las categorías y marcas
+
         setModalOpen(false);
       } else {
         setErrorMsg(response.data.msg);
@@ -182,8 +151,7 @@ const CategoriasList = () => {
       actualizarCategoria();
     } else if (entityType === 'subCategoria') {
       actualizarSubCategoria();
-    } else if (entityType === 'marca') {
-      actualizarMarca();
+   
     } else if (entityType === 'catalogo') {
       actualizarCatalogo();
     }
@@ -278,108 +246,7 @@ const CategoriasList = () => {
             )}
           </div>
         </div>
-
-        {/* Tabla de marcas */}
-        <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
-          <div className="border-b border-stroke py-4 px-7 dark:border-strokedark">
-            <h3 className="font-medium text-black dark:text-white uppercase">
-              Marcas
-            </h3>
-          </div>
-          <div className="p-7 max-h-[600px] overflow-y-auto">
-            {marcas && marcas.length > 0 ? (
-              <table className="w-full text-left border-collapse">
-                <thead>
-                  <tr>
-                    <th className="border-b p-2 dark:border-strokedark">ID</th>
-                    <th className="border-b p-2 dark:border-strokedark">
-                      Nombre
-                    </th>
-                    {modulo==="admin" && (
-                      <th className="border-b p-2 dark:border-strokedark">
-                      Acciones
-                    </th>
-                    )}
-                    
-                  </tr>
-                </thead>
-                <tbody>
-                  {marcas.map((marca) => (
-                    <tr key={marca.id}>
-                      <td className="border-b p-2 dark:border-strokedark">
-                        {marca.id}
-                      </td>
-                      <td className="border-b p-2 dark:border-strokedark">
-                        {marca.nombre}
-                      </td>
-                      {modulo==="admin" &&(
-                        <td className="border-b p-2 dark:border-strokedark">
-                        <FaEdit
-                          onClick={() => handleEditClick('marca', marca)}
-                          className="w-5 h-5 text-orange-500 hover:text-orange-700  cursor-pointer"
-                        />
-                      </td>
-                      )}
-                      
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            ) : (
-              <p>No hay marcas disponibles.</p>
-            )}
-          </div>
-        </div>
-        {/* Tabla de Catalogos */}
-        <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
-          <div className="border-b border-stroke py-4 px-7 dark:border-strokedark">
-            <h3 className="font-medium text-black dark:text-white uppercase">
-              Catalogos
-            </h3>
-          </div>
-          <div className="p-7 max-h-[600px] overflow-y-auto">
-            {catalogos && catalogos.length > 0 ? (
-              <table className="w-full text-left border-collapse">
-                <thead>
-                  <tr>
-                    <th className="border-b p-2 dark:border-strokedark">ID</th>
-                    <th className="border-b p-2 dark:border-strokedark">
-                      Nombre
-                    </th>
-                    {modulo==="admin" && (
-                        <th className="border-b p-2 dark:border-strokedark">
-                        Acciones
-                      </th>
-                    )}
-                  
-                  </tr>
-                </thead>
-                <tbody>
-                  {catalogos.map((catalogo) => (
-                    <tr key={catalogo.id}>
-                      <td className="border-b p-2 dark:border-strokedark">
-                        {catalogo.id}
-                      </td>
-                      <td className="border-b p-2 dark:border-strokedark">
-                        {catalogo.nombre}
-                      </td>
-                      {modulo==="admin" && (
-                      <td className="border-b p-2 dark:border-strokedark">
-                        <FaEdit
-                          onClick={() => handleEditClick('catalogo', catalogo)}
-                          className="w-5 h-5 text-orange-500 hover:text-orange-700  cursor-pointer"
-                        />
-                      </td>
-                      )}
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            ) : (
-              <p>No hay Catalogos disponibles.</p>
-            )}
-          </div>
-        </div>
+        
       </div>
 
       {/* Modal para editar entidades */}
@@ -392,7 +259,6 @@ const CategoriasList = () => {
                 <Dialog.Title className="text-lg font-medium text-gray-800 text-center mb-4 uppercase">
                   {entityType === 'categoria' && 'Editar Categoría'}
                   {entityType === 'subCategoria' && 'Editar SubCategoría'}
-                  {entityType === 'marca' && 'Editar Marca'}
                 </Dialog.Title>
 
                 {errorMsg && (

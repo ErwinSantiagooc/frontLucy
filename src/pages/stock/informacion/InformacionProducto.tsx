@@ -38,14 +38,8 @@ const InformacionProducto = () => {
                     </div>
                     <div className="md:w-1/2">
                         <h1 className="text-3xl font-bold mb-4">{producto.nombre}</h1>
-                        <p className="text-lg text-gray-700 mb-2">Marca: {producto.marca?.nombre || 'N/A'}</p>
                         <p className="text-lg text-gray-700 mb-4">Subcategoría: {producto.subCategoria?.nombre || 'N/A'}</p>
-                        <p className="text-lg  mb-2">Precio de Venta: ${producto.precioVenta}</p>
-                        <p className="text-lg mb-2">Precio de Compra: ${producto.precioCompra}</p>
-                        <p className="text-lg text-gray-700 mb-2">Stock: {producto.stock}</p>
-                        
-                        <p className="text-lg text-gray-700 mb-6">Visible: {producto.visible ? 'Sí' : 'No'}</p>
-                        <p className="text-lg text-gray-700 mb-6">Recomendado: {producto.recomendado ? 'Sí' : 'No'}</p>
+                        <p className="text-lg text-gray-700 mb-2">Stock: {producto.activo}</p>
                         <p className="text-lg text-gray-700 mb-6">Descripción: {producto.descripcion}</p>
                     </div>
                 </div>

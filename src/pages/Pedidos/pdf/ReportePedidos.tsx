@@ -35,7 +35,6 @@ const ReportePedidos: React.FC<ReportePedidosProps> = ({ pedidos }) => {
     return pedidos.filter((pedido) => {
       const fechaPedido = new Date(pedido.fechaRegistro);
       if (filtro === 'diario' && fechaSeleccionada) {
-        const fechaFiltro = new Date(fechaSeleccionada);
         return pedido.fechaRegistro?.split('T')[0] === fechaSeleccionada;
       } else if (filtro === 'semanal' && semanaSeleccionada) {
         const [año, semana] = semanaSeleccionada.split('-W').map(Number);

@@ -7,22 +7,18 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 
 const CardProducto = () => {
-  const { productos, catalogos, categorias, marcas } = useProductoContext();
+  const { productos, categorias} = useProductoContext();
   const { modulo } = useUserContext();
   const [selectedCategoria, setSelectedCategoria] = useState('');
   const [selectedSubCategoria, setSelectedSubCategoria] = useState('');
-  const [selectedCatalogo, setSelectedCatalogo] = useState('');
-  const [selectedMarca, setSelectedMarca] = useState('');
+  
 
   const filteredProductos = (productos || []).filter((producto) => {
     return (
       (selectedCategoria === '' ||
         producto.subCategoria.categoria.id === parseInt(selectedCategoria)) &&
       (selectedSubCategoria === '' ||
-        producto.subCategoria.id === parseInt(selectedSubCategoria)) &&
-      (selectedCatalogo === '' ||
-        producto.catalogo.id === parseInt(selectedCatalogo)) &&
-      (selectedMarca === '' || producto.marca.id === parseInt(selectedMarca))
+        producto.subCategoria.id === parseInt(selectedSubCategoria))
     );
   });
 
@@ -62,32 +58,6 @@ const CardProducto = () => {
                   {subCategoria.nombre}
                 </option>
               ))}
-        </select>
-
-        <select
-          value={selectedCatalogo}
-          onChange={(e) => setSelectedCatalogo(e.target.value)}
-          className="border border-gray-300 p-2 rounded-md"
-        >
-          <option value="">Todos los Catálogos</option>
-          {catalogos?.map((catalogo) => (
-            <option key={catalogo.id} value={catalogo.id}>
-              {catalogo.nombre}
-            </option>
-          ))}
-        </select>
-
-        <select
-          value={selectedMarca}
-          onChange={(e) => setSelectedMarca(e.target.value)}
-          className="border border-gray-300 p-2 rounded-md"
-        >
-          <option value="">Todas las Marcas</option>
-          {marcas?.map((marca) => (
-            <option key={marca.id} value={marca.id}>
-              {marca.nombre}
-            </option>
-          ))}
         </select>
       </div>
 
@@ -132,33 +102,15 @@ const CardProducto = () => {
                     : item.nombre}
                 </h3>
                 <div className="flex justify-between">
-                  <p className="text-sm text-gray-600">Marca:</p>
-                  <p className="text-sm text-gray-600">{item.marca.nombre}</p>
-                </div>
-                <div className="flex justify-between">
                   <p className="text-sm text-gray-600">Stock:</p>
                   <strong className="text-sm text-gray-600">
-                    {item.stock}
+                    {item.activo}
                   </strong>
-                </div>
-                <div className="flex justify-between">
-                  <p className="text-sm text-gray-600">Precio de compra:</p>
-                  <p className="text-sm text-gray-600">${item.precioCompra}</p>
-                </div>
-                <div className="flex justify-between">
-                  <p className="text-sm text-gray-600">Precio de venta:</p>
-                  <p className="text-sm text-gray-600">${item.precioVenta}</p>
                 </div>
                 <div className="flex justify-between">
                   <p className="text-sm text-gray-600">Visible:</p>
                   <p className="text-sm text-gray-600">
-                    {item.visible ? 'Sí' : 'No'}
-                  </p>
-                </div>
-                <div className="flex justify-between">
-                  <p className="text-sm text-gray-600">Recomendado:</p>
-                  <p className="text-sm text-gray-600">
-                    {item.recomendado ? 'Sí' : 'No'}
+                    {item.activo ? 'Sí' : 'No'}
                   </p>
                 </div>
               </div>

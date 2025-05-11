@@ -22,7 +22,7 @@ function formatCurrency(value: number | 0) {
 }
 
 const Productos: React.FC = () => {
-  const { productos, categorias, marcas, } = useClienteContext();
+  const { productos, categorias, } = useClienteContext();
 
   // Estados para los filtros
   const [selectedCategoria, setSelectedCategoria] = useState<number | null>(
@@ -31,7 +31,7 @@ const Productos: React.FC = () => {
   const [selectedSubCategoria, setSelectedSubCategoria] = useState<
     number | null
   >(null);
-  const [selectedMarca, setSelectedMarca] = useState<number | null>(null);
+  
 
   const [searchText, setSearchText] = useState('');
   const [sortOrder, setSortOrder] = useState<string>('');
@@ -45,27 +45,19 @@ const Productos: React.FC = () => {
       const matchSubCategoria = selectedSubCategoria
         ? producto.subCategoria.id === selectedSubCategoria
         : true;
-      const matchMarca = selectedMarca
-        ? producto.marca.id === selectedMarca
-        : true;
       const matchSearch = searchText
         ? producto.nombre.toLowerCase().includes(searchText.toLowerCase())
         : true;
-      return matchCategoria && matchSubCategoria && matchMarca && matchSearch;
+      return matchCategoria && matchSubCategoria && matchSearch;
     });
 
-    if (sortOrder === 'asc') {
-      filtered = filtered?.sort((a, b) => a.precioVenta - b.precioVenta);
-    } else if (sortOrder === 'desc') {
-      filtered = filtered?.sort((a, b) => b.precioVenta - a.precioVenta);
-    }
+
 
     return filtered;
   }, [
     productos,
     selectedCategoria,
     selectedSubCategoria,
-    selectedMarca,
     searchText,
     sortOrder,
   ]);
@@ -84,10 +76,6 @@ const Productos: React.FC = () => {
     [],
   );
 
-  const handleMarcaChange = useCallback((marcaId: number | null) => {
-    setSelectedMarca(marcaId);
-  }, []);
-
     // Actualización de filtros
     const handleSearch = useCallback((text: string) => {
       setSearchText(text);
@@ -100,7 +88,6 @@ const Productos: React.FC = () => {
     const handleLimpiarFiltros = useCallback(() => {
       setSelectedCategoria(null);
       setSelectedSubCategoria(null);
-      setSelectedMarca(null);
       setSearchText('');
       setSortOrder('');
     }, []);
@@ -228,58 +215,6 @@ const Productos: React.FC = () => {
                 )}
               </SidebarLinkGroup>
             )}
-
-            {/* Filtro de Marca */}
-            <SidebarLinkGroup activeCondition={false}>
-              {(handleClick, open) => (
-                <>
-                  <div
-                    onClick={handleClick}
-                    className="flex items-center justify-between cursor-pointer py-2 border-b border-gray-200"
-                  >
-                    <span className="font-semibold text-gray-800">Marca</span>
-                    <svg
-                      className={`transform transition-transform duration-200 ${
-                        open ? 'rotate-180' : ''
-                      }`}
-                      width="20"
-                      height="20"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        clipRule="evenodd"
-                        d="M4.41107 6.9107C4.73651 6.58527 5.26414 6.58527 5.58958 6.9107L10.0003 11.3214L14.4111 6.91071C14.7365 6.58527 15.2641 6.58527 15.5896 6.91071C15.915 7.23614 15.915 7.76378 15.5896 8.08922L10.5896 13.0892C10.2641 13.4147 9.73651 13.4147 9.41107 13.0892L4.41107 8.08922C4.08563 7.76378 4.08563 7.23614 4.41107 6.9107Z"
-                        fill="currentColor"
-                      />
-                    </svg>
-                  </div>
-                  <div className={`${!open && 'hidden'} mt-2`}>
-                    <ul className="space-y-2 pl-0 list-none">
-                      <li
-                        className="cursor-pointer text-gray-700 hover:text-blue-600"
-                        onClick={() => handleMarcaChange(null)}
-                      >
-                        Todas las marcas
-                      </li>
-                      {marcas?.map((marca) => (
-                        <li
-                          key={marca.id}
-                          className={`cursor-pointer text-gray-700 hover:text-blue-600 ${
-                            selectedMarca === marca.id
-                              ? 'text-blue-600 font-semibold'
-                              : ''
-                          }`}
-                          onClick={() => handleMarcaChange(marca.id ?? null)}
-                        >
-                          {marca.nombre}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </>
-              )}
-            </SidebarLinkGroup>
 
             {/* Botón para limpiar filtros */}
             <button

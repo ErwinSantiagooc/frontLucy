@@ -10,13 +10,12 @@ const BASE_URL = import.meta.env.VITE_URL_BACKEND_LOCAL;
 
 const RegistrarProducto = () => {
   const token = localStorage.getItem('token');
-  const { categorias, marcas, catalogos, fetchProductos } =
+  const { categorias, fetchProductos } =
     useProductoContext();
   const [nombre, setNombre] = useState('');
   const [categoria, setCategoria] = useState('');
   const [subCategoria, setSubCategoria] = useState('');
-  const [marca, setMarca] = useState('');
-  const [catalogo, setCatalogo] = useState('');
+  const [catalogo,] = useState('');
   const [descripcion, setDescripcion] = useState('');
   const [stock, setStock] = useState<number | undefined>();
   const [precioCompra, setPrecioCompra] = useState<number | undefined>();
@@ -65,9 +64,6 @@ const RegistrarProducto = () => {
             categoria,
             subCategoria: {
               id: parseInt(subCategoria),
-            },
-            marca: {
-              id: parseInt(marca),
             },
             catalogo: {
               id: parseInt(catalogo),
@@ -179,47 +175,6 @@ const RegistrarProducto = () => {
                     </select>
                   </div>
                 </div>
-
-                {/* Marca */}
-                <div className="mb-4.5">
-                  <label className="mb-2.5 block text-black dark:text-white">
-                    Marca
-                  </label>
-                  <select
-                    value={marca}
-                    onChange={(e) => setMarca(e.target.value)}
-                    className="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                    required
-                  >
-                    <option value="">Seleccione una marca</option>
-                    {marcas?.map((marca) => (
-                      <option key={marca.id} value={marca.id}>
-                        {marca.nombre}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-
-                {/* Catálogo */}
-                <div className="mb-4.5">
-                  <label className="mb-2.5 block text-black dark:text-white">
-                    Catálogo
-                  </label>
-                  <select
-                    value={catalogo}
-                    onChange={(e) => setCatalogo(e.target.value)}
-                    className="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                    required
-                  >
-                    <option value="">Seleccione un catálogo</option>
-                    {catalogos?.map((cat) => (
-                      <option key={cat.id} value={cat.id}>
-                        {cat.nombre}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-
                 {/* El resto del formulario */}
                 {/* Precio de Compra y Precio de Venta en la misma fila */}
                 <div className="mb-4.5 flex gap-4">

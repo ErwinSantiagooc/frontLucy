@@ -7,7 +7,7 @@ import Loader from '../../common/Loader';
 import Breadcrumb from '../../components/Breadcrumbs/Breadcrumb';
 import { useUserContext } from '../../Context/UserContext';
 const ECommerce = () => {
-  const { categorias, fetchCategoriasYMarcas,fetchCatalogos } = useProductoContext();
+  const { categorias } = useProductoContext();
   const {modulo}=useUserContext();
   const [modalOpen, setModalOpen] = useState<boolean>(false);
   const [entityType, setEntityType] = useState<string>('');
@@ -17,7 +17,7 @@ const ECommerce = () => {
   const [errorMsg, setErrorMsg] = useState('');
   const [loading, setLoading] = useState(false);
   // URL base del backend desde el archivo .env
-  const BASE_URL = import.meta.env.VITE_URL_BACKEND_LOCAL;
+  const BASE_URL = "http://13.56.234.70:8080/api/productos";
 
   const handleOpenModal = (type: string) => {
     setEntityType(type);
@@ -39,18 +39,11 @@ const ECommerce = () => {
     try {
     
       if (entityType === 'categoria') {
-        
         await saveCategoria();
       } else if (entityType === 'subCategoria') {
         if(!categoriaId) return
         await saveSubCategoria();
-      } else if (entityType === 'marca') {
-        
-        await saveMarca();
-      }else if (entityType === 'catalogo') {
-        
-        await saveCatalogo();
-      }
+      } 
 
       
     } catch (error) {
@@ -80,7 +73,6 @@ const ECommerce = () => {
         },
       );
       if(response.data.success){
-        fetchCategoriasYMarcas();
         setModalOpen(false);
       }else{
         setErrorMsg(response.data.msg);
@@ -115,7 +107,6 @@ const ECommerce = () => {
       );
   
       if(response.data.success){
-        fetchCategoriasYMarcas();
         setModalOpen(false);
       }else{
         setErrorMsg(response.data.msg);
@@ -123,61 +114,6 @@ const ECommerce = () => {
     } catch (error) {
       console.error('Error al guardar la subcategoría:', error);
     } finally {
-      setLoading(false);
-    }
-  };
-
-  const saveMarca = async () => {
-    const marca = { nombre };
-
-    try {
-      setLoading(true);
-      const token = localStorage.getItem('token');
-      const response = await axios.post(
-        `${BASE_URL}detalles/marca/save`,
-        marca,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        },
-      );
-      if(response.data.success){
-        fetchCategoriasYMarcas();
-        setModalOpen(false);
-      }else{
-        setErrorMsg(response.data.msg);
-      }
-    } catch (error) {
-      console.error('Error al guardar la marca:', error);
-    }finally {
-      setLoading(false);
-    }
-  };
-  const saveCatalogo = async () => {
-    const catalogo = { nombre };
-    try {
-      setLoading(true);
-      const token = localStorage.getItem('token');
-      const response = await axios.post(
-        `${BASE_URL}catalogo/save`,
-        catalogo,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        },
-      );
-      if(response.data.success){
-        console.log(response);
-        fetchCatalogos();
-        setModalOpen(false);
-      }else{
-        setErrorMsg(response.data.msg);
-      }
-    } catch (error) {
-      console.error('Error al guardar la catalogo:', error);
-    }finally {
       setLoading(false);
     }
   };

@@ -7,7 +7,7 @@ const Brand = ({dark = false}) => {
       dark ? 'text-white' : 'text-dark'
     }`}>
       <img src={Logo} alt="Logo" width={50} height={50} />
-      TEKCAM
+      Lucy Mundo de Pijamas
     </div>
   );
 };

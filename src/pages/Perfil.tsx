@@ -3,7 +3,6 @@ import { MdEmail } from 'react-icons/md';
 import { useUserContext } from '../Context/UserContext';
 import { Rol } from '../types/Rol';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Loader from '../common/Loader';
 

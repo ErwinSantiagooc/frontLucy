@@ -1,12 +1,14 @@
-import { FaTruck } from 'react-icons/fa';
+import { FaTruck } from "react-icons/fa";
 
 const BannerCliente = () => {
   return (
-    <div className="bg-slate-900 " >
+    <div className="bg-[#B695E0]">
       <div className="max-w-screen-xl mx-auto px-4 py-3 text-white sm:text-center md:px-8">
-        <p className="font-medium uppercase ">
-          Envios a toda{' '}
-          <strong className="font-semibold underline  duration-150 hover:text-indigo-100 inline-flex items-center gap-x-1">
+        <p className="font-medium uppercase text-white">
+          Envíos a toda{' '}
+          <strong
+            className="font-semibold underline inline-flex items-center gap-x-1 transition-colors duration-150 hover:text-[#FFE482]"
+          >
             Colombia
             <FaTruck />
             <svg
@@ -27,4 +29,5 @@ const BannerCliente = () => {
     </div>
   );
 };
+
 export default BannerCliente;

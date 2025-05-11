@@ -15,9 +15,9 @@ const sections: Section[] = [
   },
   {
     title: "2. OBJETO Y ÁMBITO DE APLICACIÓN",
-    content: `Los presentes, constituyen los términos y las condiciones que se deberán tener en cuenta por los Clientes para las compras que realicen en el sitio web https://tekcam-frontend.vercel.app/cliente O Tienda Online o por canales de comercio electrónico tales como WhatsApp -en lo que sea aplicable de los productos que comercializa Cash.
+    content: `Los presentes, constituyen los términos y las condiciones que se deberán tener en cuenta por los Clientes para las compras que realicen en el sitio web https://front-lucy.vercel.app/cliente O Tienda Online o por canales de comercio electrónico tales como WhatsApp -en lo que sea aplicable de los productos que comercializa Cash.
     
-    Se entenderán como productos los elementos, accesorios y repuestos que se comercializan en https://tekcam-frontend.vercel.app/cliente o Tienda Online o por canales de comercio electrónico tales como WhatsApp -en lo que sea aplicable. Los términos y condiciones aquí descritos les serán aplicables de manera indistinta a la totalidad de productos, salvo que se indique expresamente lo contrario, caso en el cual se establecerán las condiciones especiales para la comercialización de cada tipo de producto.`,
+    Se entenderán como productos los elementos, accesorios y repuestos que se comercializan en https://front-lucy.vercel.app/cliente o Tienda Online o por canales de comercio electrónico tales como WhatsApp -en lo que sea aplicable. Los términos y condiciones aquí descritos les serán aplicables de manera indistinta a la totalidad de productos, salvo que se indique expresamente lo contrario, caso en el cual se establecerán las condiciones especiales para la comercialización de cada tipo de producto.`,
   },
   {
     title: "3. ACLARACIONES IMPORTANTES",
@@ -63,7 +63,7 @@ const sections: Section[] = [
   {
     title: "11. CANALES DE ATENCIÓN AL CLIENTE",
     content: `Líneas telefónicas: +57 313 2215688
-    Correo electrónico: tekcam.store@gmail.com
+    Correo electrónico: 
     Chat y WhatsApp: +57 3013842551`,
   },
 ];
@@ -78,21 +78,27 @@ const PQR: React.FC = () => {
   return (
     <>
       <PageTitle title="Lucy Mundo de Pijamas PQR" />
-      <section className="max-w-screen-lg mx-auto p-6">
-        <h1 className="text-3xl font-bold text-center mb-8">Lucy Mundo de Pijamas PQR </h1>
+      <section className="max-w-screen-lg mx-auto p-6 bg-gray-50"> {/* Fondo gris suave */}
+        <h1 className="text-3xl font-bold text-center mb-8 text-blue-900"> {/* Azul nocturno */}
+          KINGO Mundo de Pijamas PQR
+        </h1>
         <GenerarPQR />
         {sections.map((section, index) => (
           <div
             key={index}
-            className="border-b py-4 cursor-pointer"
+            className="border-b border-blue-100 py-4 cursor-pointer hover:bg-blue-50 transition-colors" // Bordes y hover sutiles
             onClick={() => toggleSection(index)}
           >
-            <h2 className="text-xl font-medium flex justify-between items-center">
+            <h2 className="text-xl font-medium flex justify-between items-center text-blue-900"> {/* Azul nocturno */}
               {section.title}
-              <span>{openSection === index ? "-" : "+"}</span>
+              <span className="text-coral-500 font-bold"> {/* Coral para íconos */}
+                {openSection === index ? "−" : "+"}
+              </span>
             </h2>
             {openSection === index && (
-              <p className="mt-4 text-gray-600">{section.content}</p>
+              <p className="mt-4 text-blue-800"> {/* Azul más claro para texto */}
+                {section.content}
+              </p>
             )}
           </div>
         ))}

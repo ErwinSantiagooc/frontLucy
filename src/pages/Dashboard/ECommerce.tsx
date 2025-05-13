@@ -17,7 +17,7 @@ const ECommerce = () => {
   const [errorMsg, setErrorMsg] = useState('');
   const [loading, setLoading] = useState(false);
   // URL base del backend desde el archivo .env
-  const BASE_URL = "http://13.56.234.70:8080/api/productos";
+  const BASE_URL = import.meta.env.VITE_URL_BACKEND_LOCAL;
 
   const handleOpenModal = (type: string) => {
     setEntityType(type);

@@ -40,36 +40,37 @@ const TopProductos: React.FC<TopProductosProps> = ({ facturas }) => {
   }, [facturas]);
 
   return (
-    <div className="p-4 bg-white mb-3 dark:bg-boxdark">
-      <h2 className="text-xl font-bold text-black mb-4">Productos Más Vendidos</h2>
+  <div className="p-4 bg-[#FFFFFF] mb-3 rounded-lg shadow-sm">
+    <h2 className="text-xl font-bold text-[#7A5B47] mb-4">Productos Más Vendidos</h2>
 
-      {/* Tabla de productos más vendidos */}
-      <table className="min-w-full divide-y divide-gray-200 rounded-lg border border-gray-300  shadow-sm">
-        <thead className="bg-gray-50">
-          <tr>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-              Producto
-            </th>
-            <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-              Cantidad Vendida
-            </th>
+    {/* Tabla de productos más vendidos */}
+    <table className="min-w-full divide-y divide-[#F4B1C7] rounded-lg border border-[#F4B1C7] shadow-sm">
+      <thead className="bg-[#B695E0]">
+        <tr>
+          <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+            Producto
+          </th>
+          <th className="px-6 py-3 text-right text-xs font-medium text-white uppercase tracking-wider">
+            Cantidad Vendida
+          </th>
+        </tr>
+      </thead>
+      <tbody className="divide-y divide-[#F4B1C7]">
+        {productSales.map((product) => (
+          <tr key={product.name}>
+            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-[#3A3A3A]">
+              {product.name}
+            </td>
+            <td className="px-6 py-4 whitespace-nowrap text-sm text-right text-[#C29678]">
+              {product.cantidad}
+            </td>
           </tr>
-        </thead>
-        <tbody className="divide-y divide-gray-200 ">
-          {productSales.map((product) => (
-            <tr key={product.name}>
-              <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                {product.name}
-              </td>
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-right text-gray-500">
-                {product.cantidad}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  );
+        ))}
+      </tbody>
+    </table>
+  </div>
+);
+
 };
 
 export default TopProductos;

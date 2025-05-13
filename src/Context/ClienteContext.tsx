@@ -16,9 +16,7 @@ import Carrito from '../types/Carrito';
 // Define el tipo para el contexto del producto
 type ClienteContextType = {
   categorias: Categoria[] | null;
- 
-  fetchCategoriasYMarcas: () => void;
-  
+
   fetchCatalogos: () => void;
   productos: Producto[] | null;
   fetchProductos: () => void;
@@ -52,7 +50,7 @@ export const useClienteContext = (): ClienteContextType => {
 export const ClienteProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
-  const [categorias, setCategorias] = useState<Categoria[] | null>([]);
+  const [categorias] = useState<Categoria[] | null>([]);
   const [productos,setProductos] = useState<Producto[] | null>([]);
   const BASE_URL = import.meta.env.VITE_URL_BACKEND_LOCAL;
   const [carrito, setCarrito] = useState<Carrito[]>(
